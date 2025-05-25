@@ -1,0 +1,30 @@
+<div class="controls">
+  <label *ngFor="let face of faces; let i = index">
+    Face {{ i + 1 }}:
+   <input type="file" (change)="onTextureChange($event, i)" accept="image/*" />
+  </label>
+  
+  <label>
+    Width: <input type="range" [(ngModel)]="width" min="0.2" max="2.0" step="0.1" (input)="updateBox()" />
+  </label>
+  <label>
+    Height: <input type="range" [(ngModel)]="height" min="0.2" max="2.0" step="0.1" (input)="updateBox()" />
+  </label>
+  <label>
+    Depth: <input type="range" [(ngModel)]="depth" min="0.2" max="2.0" step="0.1" (input)="updateBox()" />
+  </label>
+ 
+  <label>
+    Finish:
+    <select [(ngModel)]="materialType" (change)="updateMaterial()">
+      <option value="matte">Matte</option>
+      <option value="glossy">Glossy</option>
+    </select>
+  </label>
+
+  <button (click)="toggleRotation()">
+    {{ rotate ? 'Stop' : 'Start' }} Rotation
+  </button>
+</div>
+
+<canvas #canvas></canvas>
